@@ -1,24 +1,25 @@
+## Creating network
 ```
 docker network create py-pg
 ```
-
+## Building Docker image in `Client`
 ```
 docker build --rm -t py-pgsql .
 ```
-
+## Creating container to develop in `/`
 ```
 docker run \
    --rm \
    --network py-pg \
    --hostname py \
    --name py \
-   -v $PWD/:/home/app \
+   -v $PWD/Client:/home/app \
    -p 8888:8888 \
    -it \
    py-pgsql \
    jupyter notebook --allow-root --no-browser --autoreload --ip=172.19.0.2
 ```
-Ejecutar la Base de Datos
+## Creating Postgres container
 ```
 docker run \
    --rm \
